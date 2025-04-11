@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
+from flask import Flask, request, jsonify, render_template
 import smtplib
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
@@ -49,11 +49,11 @@ def send_email():
         """
         
         mail.send(msg)
-        return redirect(url_for('index'))
+        return jsonify({'success': True, 'message': 'Email sent succesfully'}), 200
     
     except Exception as e:
         print("Error:", e)
-        return redirect(url_for('index'))
+        return jsonify({'success': False, 'message': 'Email failed to send'}), 500
     
 if __name__ == '__main__':
     app.run(debug=True)
