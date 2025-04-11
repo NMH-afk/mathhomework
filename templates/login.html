@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Enter your school email" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const blacklist = ["800020@smcdsb.on.ca", "796609@smcdsb.on.ca", "46086@smcdsb.on.ca"];
+    const loginForm = document.getElementById('loginForm');
+
+    // Cookie functions (unchanged)
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+    }
+    function getCookie(name){
+        return document.cookie.split('; ').reduce((r, c) => {
+            const [key, val] = c.split('=');
+            return key === name ? decodeURIComponent(val) : r;
+        }, '');
+    }
+
+    // Function to check login status (modified)
+
+
+    // Function to handle login (modified)
+    function handleLogin(event) {
+        event.preventDefault();
+        const email = document.getElementById('email').value;
+        localStorage.setItem('Email', email, 1); // Now using email for cookie
+        console.log("cooke set" + email);
+        window.location.href='index.html';
+    }
+
+    function checkLogin() {
+        const email = localStorage.getItem('Email'); // Now using email for cookie
+        console.log(email);
+        if (email) {
+            window.location.href = "index.html";
+        }
+        if (blacklist.includes(email) || !/^\d{5}/.test(email) || !email.endsWith('@smcdsb.on.ca')) {
+            console.log("Invalid or blacklisted email detected: " + email);
+            localStorage.removeItem('Email'); // remove from localStorage
+            setCookie('Email', '', -1);       // remove cookie if it exists
+            return;
+        }
+    }
+    // Call checkLogin when the page loads
+    window.onload = checkLogin;
+
+    // Attach handleLogin to the form's submit event
+    loginForm.addEventListener('submit', handleLogin);
+
+    // Rest of your validation logic (unchanged)
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const email = document.getElementById('email').value;
+
+      // Check if it's an @smcdsb.on.ca email
+      if (!email.endsWith('@smcdsb.on.ca')) {
+        alert("Needs to be an @smcdsb.on.ca email address.");
+        return; // Stop further validation if it's not an @smcdsb.on.ca email
+        window.location.href="login.html"
+      }
+
+      if (blacklist.includes(email)){
+        window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+        return;
+      }
+
+      // Check if it starts with five digits
+      if (!/^\d{5}/.test(email)) { // Use a regular expression for flexibility
+        window.location.href = "https://www.youtube.com/watch?v=xvFZjo5PgG0"
+        return; // Stop further validation if it doesn't start with five digits
+      }
+    });
+  </script>
+</body>
+</html>
