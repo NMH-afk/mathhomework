@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for, flash
 import smtplib
 from email.mime.text import MIMEText
 from dotenv import load_dotenv
@@ -50,73 +49,12 @@ def send_email():
         """
         
         mail.send(msg)
-        return jsonify({'success': True, 'message': 'Email sent succesfully'}), 200
+        return redirect(url_for('index'))
     
     except Exception as e:
         print("Error:", e)
-        return jsonify({'success': False, 'message': 'Email failed to send'}), 500
+        return redirect(url_for('index'))
     
 if __name__ == '__main__':
     app.run(debug=True)
-=======
-from flask import Flask, request, jsonify, render_template
-import smtplib
-from email.mime.text import MIMEText
-from dotenv import load_dotenv
-from flask_mail import Mail, Message
-import os
-
-load_dotenv()
-
-app = Flask(__name__)
-
-
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
-app.config['MAIL_DEFAULT_SENDER'] = os.environ.get('EMAIL_USER')
-
-mail = Mail(app)
-
-@app.route('/')
-def home():
-    return render_template('index.html')
-
-@app.route('/index.html')
-def index():
-    return render_template('index.html')
-
-@app.route('/login.html')
-def login():
-    return render_template('login.html')
-
-@app.route('/send_email', methods=['POST'])
-def send_email():
-    try:
-        name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
-        message_body = request.form['message']
-        
-        msg = Message(f"New Contact Form Submission from {name}",
-                      recipients=['helphomework748@gmail.com'])
-        msg.body = f"""
-        Name = {name}
-        Email = {email}
-        Phone = {phone}
-        Message = {message_body}
-        """
-        
-        mail.send(msg)
-        return jsonify({'success': True, 'message': 'Email sent succesfully'}), 200
-    
-    except Exception as e:
-        print("Error:", e)
-        return jsonify({'success': False, 'message': 'Email failed to send'}), 500
-    
-if __name__ == '__main__':
-    app.run(debug=True)
->>>>>>> 35dcdfb887ede7d9e864c8a01ee4d471c0f40e48
     
