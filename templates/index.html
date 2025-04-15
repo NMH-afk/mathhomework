@@ -6,7 +6,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Finish Homework Now</title>
-        <script>
+        <!--<script>
             const blacklist = ["800020@smcdsb.on.ca", "796609@gmail.com", "46086@smcdsb.on.ca"];
             function getCookie(name) {
                 return document.cookie.split('; ').reduce((r, c) => {
@@ -17,7 +17,7 @@
             function checkLogin() {
                 const email = localStorage.getItem('Email');
                 if (!email) {
-                    window.location.href="login.html";
+                    window.location.href="login";
                 }
                 if (blacklist.includes(email) || !/^\d{5}/.test(email) || !email.endsWith('@smcdsb.on.ca')) {
                     console.log("Invalid or blacklisted email detected: " + email);
@@ -28,7 +28,7 @@
             }
             // Correctly assign the function to the event handler
             window.onload = checkLogin; 
-        </script>
+        </script>-->
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="static/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -80,6 +80,39 @@
                         <h4 class="my-3">Too much math homework?</h4>
                         <p class="text-muted">We know that the math teachers keep giving so much homework, so we will do your homework for $7 for a day's work.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+        <!--Examples-->
+        <section class="page-section bg-light" id="examples">
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Examples</h2>
+                    <h3 class="section-subheading text-muted">Check out some of the work we’ve done.</h3>
+                </div>
+                <div class="row">
+                    <!-- Example 1 -->
+                    <div class="row justify-content-center text-center">
+                        <div class="col-md-4">
+                            <a href="examplePortfolio1" target="_blank" class="preview-btn" title="Click to view this portfolio">
+                                <img src="static/assets/img/portfolio1.png" class="portfolio-preview" alt="Algebra Homework Example">
+                            </a>
+                            <p>Example Portfolio 1</p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="examplePortfolio2" target="_blank" class="preview-btn" title="Click to view this portfolio">
+                                <img src="static/assets/img/portfolio1.png" class="portfolio-preview" alt="Geometry Homework Example">
+                            </a>
+                            <p>Example Portfolio 2</p>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="examplePortfolio3" target="_blank" class="preview-btn" title="Click to view this portfolio">
+                                <img src="static/assets/img/portfolio1.png" class="portfolio-preview" alt="Trigonometry Homework Example">
+                            </a>
+                            <p>Example Portfolio 3</p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </section>

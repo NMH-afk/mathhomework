@@ -76,14 +76,14 @@
         const email = document.getElementById('email').value;
         localStorage.setItem('Email', email, 1); // Now using email for cookie
         console.log("cooke set" + email);
-        window.location.href='index.html';
+        window.location.href='/';
     }
 
     function checkLogin() {
         const email = localStorage.getItem('Email'); // Now using email for cookie
         console.log(email);
         if (email) {
-            window.location.href = "index.html";
+            window.location.href = "/";
         }
         if (blacklist.includes(email) || !/^\d{5}/.test(email) || !email.endsWith('@smcdsb.on.ca')) {
             console.log("Invalid or blacklisted email detected: " + email);
@@ -108,7 +108,7 @@
       if (!email.endsWith('@smcdsb.on.ca')) {
         alert("Needs to be an @smcdsb.on.ca email address.");
         return; // Stop further validation if it's not an @smcdsb.on.ca email
-        window.location.href="login.html"
+        window.location.href="login"
       }
 
       if (blacklist.includes(email)){

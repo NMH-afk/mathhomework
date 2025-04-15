@@ -9,7 +9,6 @@ load_dotenv()
 
 app = Flask(__name__)
 
-
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -23,13 +22,21 @@ mail = Mail(app)
 def home():
     return render_template('index.html')
 
-@app.route('/index.html')
-def index():
-    return render_template('index.html')
+#@app.route('/login')
+#def login():
+#    return render_template('login.html')
 
-@app.route('/login.html')
-def login():
-    return render_template('login.html')
+@app.route('/examplePortfolio2')
+def portfolio2():
+    return render_template('portfolio2.html')
+
+@app.route('/examplePortfolio3')
+def portfolio3():
+    return render_template('portfolio3.html')
+
+@app.route('/examplePortfolio1')
+def portfolio1():
+    return render_template('portfolio1.html')
 
 @app.route('/send_email', methods=['POST'])
 def send_email():
@@ -49,12 +56,15 @@ def send_email():
         """
         
         mail.send(msg)
-        return jsonify({'success': True, 'message': 'Email sent succesfully'}), 200
-    
+        return jsonify({'success': True, 'message': 'Email sent successfully'}), 200
+
     except Exception as e:
         print("Error:", e)
         return jsonify({'success': False, 'message': 'Email failed to send'}), 500
-    
-#   if __name__ == '__main__':
-#    app.run(debug=True)
-    
+
+if __name__ == '__main__':
+    app.run(debug=True)
+ 
+#@app.route('/index.html')
+#def index():
+#    return render_template('index.html')
