@@ -26,15 +26,15 @@ def home():
 #def login():
 #    return render_template('login.html')
 
-@app.route('/examplePortfolio2')
+@app.route('/portfolio2')
 def portfolio2():
     return render_template('portfolio2.html')
 
-@app.route('/examplePortfolio3')
+@app.route('/portfolio3')
 def portfolio3():
     return render_template('portfolio3.html')
 
-@app.route('/examplePortfolio1')
+@app.route('/portfolio1')
 def portfolio1():
     return render_template('portfolio1.html')
 
